@@ -151,9 +151,9 @@ class SocialPreviewBase(PreviewBase):
             # to fix keyError https://www.crummy.com/software/BeautifulSoup/bs4/doc/#miscellaneous
             if property_meta and property_meta.get('content'):
                 # dynamically attach property to instance
-                self.__dict__[new_property] = self.__dict__[new_property] or property_meta.get('content')
+                self.__dict__[new_property] = self.__dict__.get('new_property') or property_meta.get('content')
             else:
-                self.__dict__[new_property] = self.__dict__[new_property] or None
+                self.__dict__[new_property] = self.__dict__.get('new_property') or None
 
 
 class OpenGraph(SocialPreviewBase):
