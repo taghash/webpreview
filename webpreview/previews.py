@@ -148,10 +148,10 @@ class SocialPreviewBase(PreviewBase):
                 new_property = re.sub('(?!^)([A-Z]+)', r'_\1',property).lower()
             else:
                 new_property = property
-
-            if property_meta and property_meta['content'] != "":
+            # to fix keyError https://www.crummy.com/software/BeautifulSoup/bs4/doc/#miscellaneous
+            if property_meta and property_meta.get('content') != "":
                 # dynamically attach property to instance
-                self.__dict__[new_property] = property_meta['content']
+                self.__dict__[new_property] = property_meta.get('content')
             else:
                 self.__dict__[new_property] = None
 
